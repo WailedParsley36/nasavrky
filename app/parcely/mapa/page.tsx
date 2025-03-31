@@ -2,7 +2,7 @@
 
 import Head from "next/head";
 import PropertyCard from "../../../components/PropertyCard";
-import ParcelMap from "../../../components/ParcelMap";
+import { ParcelMap } from "../../../components/ParcelMapWithoutSSR";
 import { Parcela } from "../../../MockData";
 
 export default function Mapa() {

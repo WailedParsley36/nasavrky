@@ -91,7 +91,7 @@ interface Props {
   onParcelClick: (parcel: Parcela) => void;
 }
 
-export default function ParcelMap({
+export default function ParcelMapBroken({
   className = "w-full min-h-[92.5vh]",
   onParcelClick,
 }: Props) {
@@ -120,3 +120,4 @@ export default function ParcelMap({
     </MapContainer>
   );
 }
+

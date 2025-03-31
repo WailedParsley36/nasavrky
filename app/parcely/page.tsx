@@ -1,64 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { Parcela } from "../../MockData";
 import { AllParcels } from "../../MockData";
-import ParcelMap from "../../components/ParcelMap";
+import { ParcelMap } from "../../components/ParcelMapWithoutSSR";
 import { useRouter } from "next/navigation";
 import ParcelCard from "../../components/ParcelCard";
-
-function PropertyCard({ obrazek, cena, lokalita, plocha, nazev }: Parcela) {
-  return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md">
-      <div className="relative h-48">
-        <Image src={obrazek} alt={lokalita} fill objectFit="cover" />
-      </div>
-      <div className="p-4">
-        <h3 className="text-xl font-bold">{cena} Kč / m²</h3>
-        <p className="text-sm text-gray-600 truncate">{lokalita}</p>
-        <div className="flex justify-between mt-2 text-sm">
-          <div className="flex items-center">
-            <svg
-              className="w-4 h-4 mr-1"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 21V8L12 2L20 8V21H4Z"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-            </svg>
-            <span>{plocha} m²</span>
-          </div>
-          <div className="flex items-center">
-            <svg
-              className="w-4 h-4 mr-1"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <path
-                d="M12 12H12.01"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span>{nazev}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
