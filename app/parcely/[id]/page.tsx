@@ -13,7 +13,9 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { AllParcels, Parcela } from "../../../ParcelData";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { formatPrice } from "../page";
+import { ParcelMap } from "../../../components/ParcelMapWithoutSSR";
 
 function PropertyDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -26,20 +28,18 @@ function PropertyDetailPage() {
   else if (currentParcel.prodano)
     return <SoldPropertyPage parcel={currentParcel} />;
 
-  const images: string[] = [currentParcel.obrazek];
-
   function handleNextImage() {
-    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) => (prev === currentParcel!.obrazky!.length - 1 ? 0 : prev + 1));
   }
 
   function handlePrevImage() {
-    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) => (prev === 0 ? currentParcel!.obrazky!.length - 1 : prev - 1));
   }
 
   return (
     <>
       <Head>
-        <title>Pozemek 2502/6 | Nasavrky</title>
+        <title>Pozemek {currentParcel.id} | {currentParcel.lokalita}</title>
         <meta
           name="description"
           content="Stavební parcela na prodej v Nasavrkách"
@@ -52,7 +52,7 @@ function PropertyDetailPage() {
             Parcely na prodej
           </Link>
           <span className="mx-2">›</span>
-          <span>Pozemek 2502/6</span>
+          <span>Pozemek {currentParcel.id}</span>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -96,15 +96,15 @@ function PropertyDetailPage() {
               </div>
             </div>
 
-            <h1 className="text-3xl font-bold mb-2">Pozemek 2502/6</h1>
+            <h1 className="text-3xl font-bold mb-2">Pozemek {currentParcel.id}</h1>
             <p className="text-gray-600 mb-6 flex items-center">
               <FaMapMarkerAlt className="mr-2" />
-              Větrná 415-400, 538 25 Nasavrky
+              {currentParcel.lokalita}
             </p>
 
             <div className="relative h-[400px] md:h-[500px] mb-2 rounded-lg overflow-hidden">
               <Image
-                src={images[currentImageIndex]}
+                src={currentParcel.obrazky[currentImageIndex]}
                 alt={`Pozemek 2502/6 - obrázek ${currentImageIndex + 1}`}
                 fill
                 className="object-cover"
@@ -153,12 +153,11 @@ function PropertyDetailPage() {
             </div>
 
             <div className="grid grid-cols-4 gap-2 mb-8">
-              {images.map((img, index) => (
+              {currentParcel.obrazky.map((img, index) => (
                 <div
                   key={index}
-                  className={`relative h-24 rounded-lg overflow-hidden cursor-pointer ${
-                    index === currentImageIndex ? "ring-2 ring-amber-500" : ""
-                  }`}
+                  className={`relative h-24 rounded-lg overflow-hidden cursor-pointer ${index === currentImageIndex ? "ring-2 ring-amber-500" : ""
+                    }`}
                   onClick={() => setCurrentImageIndex(index)}
                 >
                   <Image
@@ -191,12 +190,7 @@ function PropertyDetailPage() {
             <div className="mb-8">
               <h2 className="text-xl font-bold mb-4">Poloha</h2>
               <div className="h-[300px] bg-gray-200 rounded-lg relative overflow-hidden">
-                <Image
-                  src="/images/map.jpg"
-                  alt="Mapa lokality"
-                  fill
-                  className="object-cover"
-                />
+                <ParcelMap onParcelClick={() => { }} autoCenter selectedIds={[currentParcel.id]} />
               </div>
             </div>
           </div>
@@ -208,21 +202,21 @@ function PropertyDetailPage() {
                   <div className="text-gray-600 mb-1">Výměra:</div>
                   <div className="text-2xl font-bold flex items-center">
                     <FaRuler className="mr-2 text-gray-500" />
-                    1110 m²
+                    {currentParcel.plocha} m²
                   </div>
                 </div>
 
                 <div className="mb-6">
                   <div className="text-gray-600 mb-1">Cena za m²:</div>
                   <div className="text-2xl font-bold">
-                    1750 Kč <span className="text-xl font-normal">/ m²</span>
+                    {currentParcel.cena / currentParcel.plocha} Kč <span className="text-xl font-normal">/ m²</span>
                   </div>
                 </div>
 
                 <div className="mb-6">
                   <div className="text-gray-600 mb-1">Celková cena:</div>
                   <div className="text-3xl font-bold text-amber-500">
-                    1 925 000 Kč
+                    {formatPrice(currentParcel.cena)}
                   </div>
                 </div>
 
@@ -238,27 +232,9 @@ function PropertyDetailPage() {
               <div>
                 <h2 className="text-xl font-bold mb-4">Další pozemky</h2>
                 <div className="space-y-4">
-                  <PropertyCard
-                    image="/images/property-thumb1.jpg"
-                    price={1750}
-                    size={940}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
-                  <PropertyCard
-                    image="/images/property-thumb2.jpg"
-                    price={1250}
-                    size={850}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
-                  <PropertyCard
-                    image="/images/property-thumb3.jpg"
-                    price={1100}
-                    size={1002}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
+                  {AllParcels.filter(x => x.id != currentParcel.id).slice(0, 3).map(x =>
+                    <PropertyCard key={x.id} parcel={x} />
+                  )}
                 </div>
               </div>
             </div>
@@ -304,7 +280,9 @@ function PropertyDetailPage() {
   );
 }
 
-function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
+function SoldPropertyPage({ parcel }: { parcel: Parcela }) {
+  console.log(parcel)
+
   return (
     <>
       <Head>
@@ -332,7 +310,7 @@ function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
             <div className="flex flex-col md:flex-row gap-4 mb-6 items-start">
               <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg">
                 <FaRuler className="mr-2 text-gray-600" />
-                <span>1110 m²</span>
+                <span>{parcel.plocha} m²</span>
               </div>
               <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg">
                 <svg
@@ -357,10 +335,10 @@ function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
               </div>
             </div>
 
-            <h1 className="text-3xl font-bold mb-2">Pozemek 2502/6</h1>
+            <h1 className="text-3xl font-bold mb-2">Pozemek {parcel.id}</h1>
             <p className="text-gray-600 mb-6 flex items-center">
               <FaMapMarkerAlt className="mr-2" />
-              Větrná 415-400, 538 25 Nasavrky
+              {parcel.lokalita}
             </p>
 
             {/* Sold Banner */}
@@ -377,13 +355,13 @@ function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
               </div>
             </div>
 
-            <div className="relative h-[400px] md:h-[500px] mb-2 rounded-lg overflow-hidden">
+            <div className="relative h-[400px] md:h-[500px] mb-8 rounded-lg overflow-hidden">
               <div className="absolute inset-0 bg-black/20 z-10"></div>
               <Image
-                src="/images/property1.jpg"
-                alt="Pozemek 2502/6 - prodáno"
+                src={parcel.obrazky[0]}
+                alt={`Pozemek ${parcel.id} - Prodáno`}
                 fill
-                className="object-cover opacity-80"
+                className="object-cover opacity-50"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="bg-red-500/80 text-white font-bold py-3 px-8 rounded-lg transform -rotate-12 text-3xl">
@@ -414,12 +392,7 @@ function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
             <div className="mb-8 opacity-70">
               <h2 className="text-xl font-bold mb-4">Poloha</h2>
               <div className="h-[300px] bg-gray-200 rounded-lg relative overflow-hidden">
-                <Image
-                  src="/images/map.jpg"
-                  alt="Mapa lokality"
-                  fill
-                  className="object-cover"
-                />
+                <ParcelMap onParcelClick={() => { }} autoCenter selectedIds={[parcel!.id]} />
               </div>
             </div>
           </div>
@@ -469,27 +442,9 @@ function SoldPropertyPage({ parcel }: { parcel?: Parcela }) {
                   Další dostupné pozemky
                 </h2>
                 <div className="space-y-4">
-                  <PropertyCard
-                    image="/images/property-thumb1.jpg"
-                    price={1750}
-                    size={940}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
-                  <PropertyCard
-                    image="/images/property-thumb2.jpg"
-                    price={1250}
-                    size={850}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
-                  <PropertyCard
-                    image="/images/property-thumb3.jpg"
-                    price={1100}
-                    size={1002}
-                    parcel="2502/5"
-                    location="Větrná 415-400, 538 25 Nasavrky"
-                  />
+                  {AllParcels.filter(x => x.id != parcel.id).slice(0, 3).map(x =>
+                    <PropertyCard key={x.id} parcel={x} />
+                  )}
                 </div>
               </div>
             </div>
@@ -607,25 +562,19 @@ function PropertyNotFoundPage() {
 }
 
 interface PropertyCardProps {
-  image: string;
-  price: number;
-  size: number;
-  parcel: string;
-  location: string;
+  parcel: Parcela
 }
 
 function PropertyCard({
-  image,
-  price,
-  size,
   parcel,
-  location,
 }: PropertyCardProps) {
+  const router = useRouter();
+
   return (
-    <div className="flex bg-white rounded-lg shadow-sm overflow-hidden">
+    <div className="flex bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer" onClick={() => router.push(`/parcely/${base64url(parcel.id)}`)}>
       <div className="w-1/3 relative">
         <Image
-          src={image}
+          src={parcel.obrazky[0]}
           alt="Property thumbnail"
           fill
           className="object-cover"
@@ -633,17 +582,17 @@ function PropertyCard({
       </div>
       <div className="w-2/3 p-4">
         <div className="text-lg font-bold mb-1">
-          {price} Kč <span className="text-sm font-normal">/ m²</span>
+          {formatPrice(parcel.cena / parcel.plocha)} <span className="text-sm font-normal">/ m²</span>
         </div>
-        <div className="text-gray-600 text-xs mb-2 truncate">{location}</div>
+        <div className="text-gray-600 text-xs mb-2 truncate">{parcel.lokalita}</div>
         <div className="flex justify-between text-sm">
           <div className="flex items-center">
             <FaRuler className="mr-1 text-gray-500" />
-            <span>{size} m²</span>
+            <span>{parcel.plocha} m²</span>
           </div>
           <div className="flex items-center">
             <FaMapMarkerAlt className="mr-1 text-gray-500" />
-            <span>{parcel}</span>
+            <span>{parcel.id}</span>
           </div>
         </div>
       </div>
