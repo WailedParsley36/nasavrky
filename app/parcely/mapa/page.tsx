@@ -3,7 +3,7 @@
 import Head from "next/head";
 import PropertyCard from "../../../components/PropertyCard";
 import { ParcelMap } from "../../../components/ParcelMapWithoutSSR";
-import { Parcela } from "../../../MockData";
+import { Parcela } from "../../../ParcelData";
 
 export default function Mapa() {
   return (

@@ -3,7 +3,7 @@ import { CSSProperties, SVGProps, useEffect } from "react";
 import { MapContainer, TileLayer, useMap, GeoJSON } from "react-leaflet";
 import buildings from "../homes.json";
 import { Layer, PathOptions } from "leaflet";
-import { AllParcels, Parcela } from "../MockData";
+import { AllParcels, Parcela } from "../ParcelData";
 
 const featureStyle: PathOptions = {
   color: "#E2AC36",

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Parcela } from "../MockData";
+import { Parcela } from "../ParcelData";
 import base64url from "base64url";
 
 interface ParcelCardProps {
@@ -8,6 +8,15 @@ interface ParcelCardProps {
 }
 
 export default function ParcelCard({ parcel }: ParcelCardProps) {
+  const formattedCena = Intl.NumberFormat("cs-CZ", {
+    style: "currency",
+    currency: "CZK",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  }).format(parcel.cena);
+
+  console.log("CHANGED", formattedCena)
+
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="relative h-48">
@@ -21,7 +30,7 @@ export default function ParcelCard({ parcel }: ParcelCardProps) {
           </div>
         )}
         <Image
-          src={parcel.obrazek}
+          src={parcel.obrazky[0]}
           alt={`Parcela ${parcel.id}`}
           fill
           className={`object-cover ${parcel.prodano ? "opacity-80" : ""}`}
@@ -31,17 +40,16 @@ export default function ParcelCard({ parcel }: ParcelCardProps) {
         <h3 className="text-lg font-semibold text-primary">{parcel.nazev}</h3>
         <p className="text-gray-600 mt-1">{parcel.lokalita}</p>
         <div className="mt-2 flex justify-between items-center">
-          <span className="text-lg font-bold">{parcel.cena} Kč</span>
+          <span className="text-lg font-bold">{formattedCena} Kč</span>
           <span className="text-sm text-gray-500">{parcel.plocha} m²</span>
         </div>
         <div className="mt-4">
           <Link
             href={`/parcely/${base64url(parcel.id)}`}
-            className={`${
-              parcel.prodano
-                ? "bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-700/90 transition duration-300"
-                : "btn-primary"
-            } inline-block w-full text-center`}
+            className={`${parcel.prodano
+              ? "bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-700/90 transition duration-300"
+              : "btn-primary"
+              } inline-block w-full text-center`}
           >
             {parcel.prodano ? "Prodáno" : "Zobrazit detail"}
           </Link>

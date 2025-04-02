@@ -12,7 +12,7 @@ import {
   FaRuler,
   FaSearch,
 } from "react-icons/fa";
-import { AllParcels, Parcela } from "../../../MockData";
+import { AllParcels, Parcela } from "../../../ParcelData";
 import { useParams, useSearchParams } from "next/navigation";
 
 function PropertyDetailPage() {

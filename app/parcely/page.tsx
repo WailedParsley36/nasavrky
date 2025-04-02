@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Parcela } from "../../MockData";
-import { AllParcels } from "../../MockData";
+import { Parcela } from "../../ParcelData";
+import { AllParcels } from "../../ParcelData";
 import { ParcelMap } from "../../components/ParcelMapWithoutSSR";
 import { useRouter } from "next/navigation";
 import ParcelCard from "../../components/ParcelCard";

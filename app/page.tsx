@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import ParcelCard from "../components/ParcelCard";
-import { AllParcels } from "../MockData";
+import { AllParcels } from "../ParcelData";
 
 export default function Home() {
   return (
@@ -38,7 +38,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center text-primary mb-12">Vybrané stavební parcely</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {AllParcels.map(parcela => (
+            {AllParcels.filter(x => !x.prodano).sort((a, b) => a.cena - b.cena).slice(0, 3).map(parcela => (
               <ParcelCard key={parcela.id} parcel={parcela} />
             ))}
           </div>
