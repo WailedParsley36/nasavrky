@@ -82,7 +82,7 @@ export default function ParcelMapBroken({
 }: Props) {
   const layerRefs = useRef<Record<string, Layer>>({});
   const mapRef = useRef<L.Map | null>(null);
-  const [center, setCenter] = useState<LatLngExpression>(autoCenter ? [49.83800656492651, 15.796000783466958] : [49.84185377806506, 15.796974067267506]);
+  const [center, setCenter] = useState<LatLngExpression>(autoCenter ? [49.83670656492651, 15.796000783466958] : [49.84185377806506, 15.796974067267506]);
   const selectedFeatureRef = useRef<any>(null);
 
   // Efekt pro centrování mapy na vybranou parcelu
