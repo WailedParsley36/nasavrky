@@ -67,8 +67,8 @@ export function MapScroller() {
 
 interface Props {
   className?: string;
-  selectedIds?: string[],
-  zoom?: number,
+  selectedIds?: string[];
+  zoom?: number;
   autoCenter?: boolean;
   onParcelClick: (parcel: Parcela) => void;
 }
@@ -79,15 +79,26 @@ export default function ParcelMapBroken({
   zoom,
   autoCenter = false,
   onParcelClick,
+  children
 }: Props) {
   const layerRefs = useRef<Record<string, Layer>>({});
   const mapRef = useRef<L.Map | null>(null);
-  const [center, setCenter] = useState<LatLngExpression>(autoCenter ? [49.83670656492651, 15.796000783466958] : [49.84185377806506, 15.796974067267506]);
+  const [center, setCenter] = useState<LatLngExpression>(
+    autoCenter
+      ? [49.83670656492651, 15.796000783466958]
+      : [49.84185377806506, 15.796974067267506]
+  );
   const selectedFeatureRef = useRef<any>(null);
 
   // Efekt pro centrování mapy na vybranou parcelu
   useEffect(() => {
-    if (autoCenter && selectedIds && selectedIds.length > 0 && selectedFeatureRef.current && mapRef.current) {
+    if (
+      autoCenter &&
+      selectedIds &&
+      selectedIds.length > 0 &&
+      selectedFeatureRef.current &&
+      mapRef.current
+    ) {
       const feature = selectedFeatureRef.current;
       const coords = feature.geometry.coordinates[0][0];
       // Převedení na LatLng formát
@@ -96,20 +107,20 @@ export default function ParcelMapBroken({
 
       // Alternativně můžete použít přímo metodu setView na mapě
       mapRef.current.setView(newCenter, zoom ?? 17);
-      console.log("AUTOCENTER APPLIED");
     }
-    console.log("AUTOCENTER RUNNING", autoCenter, selectedIds, selectedFeatureRef.current, mapRef.current);
   }, [selectedIds, autoCenter, zoom]);
 
   useEffect(() => {
     if (selectedIds && layerRefs.current) {
       Object.entries(layerRefs.current).forEach(([id, layer]) => {
         const isSelected = selectedIds.includes(id);
-        const parcela = AllParcels.find(x => x.id === id);
+        const parcela = AllParcels.find((x) => x.id === id);
 
         if (isSelected) {
           // Uložení vybrané parcely pro centrování
-          const feature = buildings.features.find(f => f.properties.cisloparcely === id);
+          const feature = buildings.features.find(
+            (f) => f.properties.cisloparcely === id
+          );
           if (feature && autoCenter) {
             selectedFeatureRef.current = feature;
           }
@@ -117,16 +128,16 @@ export default function ParcelMapBroken({
           // @ts-ignore
           layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
           // @ts-ignore
-          layer.getElement()?.classList.remove('hidden');
+          layer.getElement()?.classList.remove("hidden");
         } else {
           // @ts-ignore
           layer.setStyle({
             fillOpacity: 0,
             stroke: false,
-            interactive: false
+            interactive: false,
           });
           // @ts-ignore
-          layer.getElement()?.classList.add('hidden');
+          layer.getElement()?.classList.add("hidden");
         }
       });
     }
@@ -139,32 +150,29 @@ export default function ParcelMapBroken({
   ) {
     const id = feature.properties.cisloparcely;
     layerRefs.current[id] = layer;
-    const parcela = AllParcels.find(
-      (x) => x.id == id
-    );
+    const parcela = AllParcels.find((x) => x.id == id);
 
     if (selectedIds) {
       const isSelected = selectedIds.includes(id);
       if (isSelected) {
         // Uložíme vybranou parcelu pro pozdější centrování, ale neměníme stav během renderování
         if (autoCenter) {
-          console.log("AUTOCENTER SAVING");
           selectedFeatureRef.current = feature;
         }
 
         // @ts-ignore
         layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
         // @ts-ignore
-        layer.getElement()?.classList.remove('hidden');
+        layer.getElement()?.classList.remove("hidden");
       } else {
         // @ts-ignore
         layer.setStyle({
           fillOpacity: 0,
           stroke: false,
-          interactive: false
+          interactive: false,
         });
         // @ts-ignore
-        layer.getElement()?.classList.add('hidden');
+        layer.getElement()?.classList.add("hidden");
       }
     } else {
       // @ts-ignore
