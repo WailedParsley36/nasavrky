@@ -41,16 +41,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             type: "website",
         },
         robots: isSold ? "noindex, follow" : "index, follow",
-        alternates: {
-            canonical: `${BASE_URL}/parcely/${base64url.encode(currentParcel.id)}`,
-        },
     };
 
     return {
         ...commonMetadata,
-        alternates: {
-            canonical: commonMetadata.alternates?.canonical || undefined,
-        },
     };
 }
 

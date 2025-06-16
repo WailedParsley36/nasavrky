@@ -49,12 +49,7 @@ export const metadata: Metadata = {
     title: "Stavební pozemky Nasavrky",
     description: "Kompletně zasíťované parcely k prodeji v Nasavrkách.",
     images: ["https://nasavrky.vercel.app/hero.jpg"], // Replace with an actual Twitter Card image URL
-  },
-  // Add canonical URL if needed (e.g., if you have multiple URLs for the same content)
-  // metadataBase: new URL('https://www.vasestranka.cz'), // If you want to use relative paths for images, etc.
-  alternates: {
-    canonical: '/', // For the homepage, this is typically just '/' or the base URL
-  },
+  }
 };
 
 export default function RootLayout({
@@ -63,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="cs">
       <head>
         <link
           rel="stylesheet"
