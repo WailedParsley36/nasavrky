@@ -12,6 +12,40 @@ import {
 } from "react-icons/fa";
 import { NasavrkyMap } from "../../components/ParcelMapWithoutSSR";
 import { MdPhonelinkErase } from "react-icons/md";
+import { getBaseUrl } from "../../components/properties/functions";
+import { getAllParcels } from "../../ParcelData";
+
+const AllParcels = getAllParcels();
+const availableParcelsCount = AllParcels.filter(x => !x.prodano && !x.rezervovano).length;
+
+const realEstateAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgency",
+  "name": "Stavební parcely Nasavrky",
+  "description": `Oficiální prodej stavebních parcel v Nasavrkách. Kompletně zasíťované pozemky pro váš nový domov v malebné krajině Železných hor, blízko Pardubic a Chrudimi. Aktuálně k dispozici ${availableParcelsCount} parcel.`,
+  "url": getBaseUrl(),
+  "image": `${getBaseUrl()}/hero.jpg`,
+  "telephone": "+420 123 456 789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Náměstí 1",
+    "addressLocality": "Nasavrky",
+    "postalCode": "538 25",
+    "addressCountry": "CZ"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+420 123 456 789",
+    "contactType": "customer service"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Nabídka stavebních parcel v Nasavrkách",
+    "url": `${getBaseUrl()}/parcely`,
+    "numberOfItems": availableParcelsCount
+  },
+  "openingHours": "Mo-Fr 08:00-16:00",
+};
 
 function ContactPage() {
   const nameRef = React.useRef<HTMLInputElement>(null);
@@ -20,13 +54,10 @@ function ContactPage() {
 
   return (
     <>
-      <Head>
-        <title>Kontakt | Stavební pozemky Nasavrky</title>
-        <meta
-          name="description"
-          content="Kontaktní informace pro zájemce o stavební parcely v Nasavrkách"
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgencySchema) }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold mb-8 mt-10">Kontaktní informace</h1>

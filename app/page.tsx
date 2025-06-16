@@ -4,13 +4,48 @@ import Image from "next/image";
 import Link from "next/link";
 import ParcelCard from "../components/ParcelCard";
 import { getAllParcels } from "../ParcelData"; // Předpokládáme, že getAllParcels vrací pole objektů parcel
+import { getBaseUrl } from "../components/properties/functions";
 
 const AllParcels = getAllParcels();
 const availableParcelsCount = AllParcels.filter(x => !x.prodano && !x.rezervovano).length;
 
+const realEstateAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgency",
+  "name": "Stavební parcely Nasavrky",
+  "description": `Oficiální prodej stavebních parcel v Nasavrkách. Kompletně zasíťované pozemky pro váš nový domov v malebné krajině Železných hor, blízko Pardubic a Chrudimi. Aktuálně k dispozici ${availableParcelsCount} parcel.`,
+  "url": getBaseUrl(),
+  "image": `${getBaseUrl()}/hero.jpg`,
+  "telephone": "+420 123 456 789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Náměstí 1",
+    "addressLocality": "Nasavrky",
+    "postalCode": "538 25",
+    "addressCountry": "CZ"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+420 123 456 789",
+    "contactType": "customer service"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Nabídka stavebních parcel v Nasavrkách",
+    "url": `${getBaseUrl()}/parcely`,
+    "numberOfItems": availableParcelsCount
+  },
+  "openingHours": "Mo-Fr 08:00-16:00",
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgencySchema) }}
+      />
+
       {/* --- Úvodní sekce - Vylepšený a údernější text --- */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
@@ -144,7 +179,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {AllParcels.filter((x) => !x.prodano && !x.rezervovano)
-              .sort((a, b) => a.cena - b.cena)
+              .sort((a, b) => a.cena! - b.cena!)
               .slice(0, 3)
               .map((parcela, index) => (
                 <div key={parcela.id} className={`animate-fade-in-card delay-${(index + 1) * 100}`}>

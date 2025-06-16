@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from "next/dynamic";
 
 export const ParcelMap = dynamic(() => import("./ParcelMap"), {

@@ -1,15 +1,48 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { getBaseUrl } from "../../components/properties/functions";
+import { getAllParcels } from "../../ParcelData";
+
+const AllParcels = getAllParcels();
+const availableParcelsCount = AllParcels.filter(x => !x.prodano && !x.rezervovano).length;
+
+const realEstateAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgency",
+  "name": "Stavební parcely Nasavrky",
+  "description": `Oficiální prodej stavebních parcel v Nasavrkách. Kompletně zasíťované pozemky pro váš nový domov v malebné krajině Železných hor, blízko Pardubic a Chrudimi. Aktuálně k dispozici ${availableParcelsCount} parcel.`,
+  "url": getBaseUrl(),
+  "image": `${getBaseUrl()}/hero.jpg`,
+  "telephone": "+420 123 456 789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Náměstí 1",
+    "addressLocality": "Nasavrky",
+    "postalCode": "538 25",
+    "addressCountry": "CZ"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+420 123 456 789",
+    "contactType": "customer service"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Nabídka stavebních parcel v Nasavrkách",
+    "url": `${getBaseUrl()}/parcely`,
+    "numberOfItems": availableParcelsCount
+  },
+  "openingHours": "Mo-Fr 08:00-16:00",
+};
 
 export default function About() {
   return (
     <div className="bg-white">
-      <Head>
-        <title>O Nasavrkách | Naše krásné město</title>
-        <meta name="description" content="Objevte kouzlo města Nasavrky" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgencySchema) }}
+      />
 
       <header className="bg-amber-500 text-white py-12">
         <div className="container mx-auto px-4 text-center">

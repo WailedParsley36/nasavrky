@@ -9,11 +9,42 @@ import ParcelCard from "../../components/ParcelCard";
 import base64url from "base64url";
 
 import MultiRangeSlider from "../../components/multi-range/MultiRangeSlider";
+import { getBaseUrl } from "../../components/properties/functions";
 
 const AllParcels = getAllParcels();
+const availableParcelsCount = AllParcels.filter(x => !x.prodano && !x.rezervovano).length;
+
+const realEstateAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgency",
+  "name": "Stavební parcely Nasavrky",
+  "description": `Oficiální prodej stavebních parcel v Nasavrkách. Kompletně zasíťované pozemky pro váš nový domov v malebné krajině Železných hor, blízko Pardubic a Chrudimi. Aktuálně k dispozici ${availableParcelsCount} parcel.`,
+  "url": getBaseUrl(),
+  "image": `${getBaseUrl()}/hero.jpg`,
+  "telephone": "+420 123 456 789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Náměstí 1",
+    "addressLocality": "Nasavrky",
+    "postalCode": "538 25",
+    "addressCountry": "CZ"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+420 123 456 789",
+    "contactType": "customer service"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Nabídka stavebních parcel v Nasavrkách",
+    "url": `${getBaseUrl()}/parcely`,
+    "numberOfItems": availableParcelsCount
+  },
+  "openingHours": "Mo-Fr 08:00-16:00",
+};
 
 const { maxPrice, minPrice } = (() => {
-  const result = AllParcels.sort((x, y) => y.cena - x.cena);
+  const result = AllParcels.sort((x, y) => y.cena! - x.cena!);
   return { maxPrice: result[0].cena, minPrice: result[result.length - 1].cena };
 })();
 const { maxSize, minSize } = (() => {
@@ -25,13 +56,13 @@ const { maxSize, minSize } = (() => {
 })();
 const { maxPricePerMeter, minPricePerMeter } = (() => {
   const result = AllParcels.sort(
-    (x, y) => y.cena / y.plocha - x.cena / x.plocha
+    (x, y) => y.cena! / y.plocha - x.cena! / x.plocha
   );
   const first = result[0];
   const last = result[result.length - 1];
   return {
-    maxPricePerMeter: first.cena / first.plocha,
-    minPricePerMeter: last.cena / last.plocha,
+    maxPricePerMeter: first.cena! / first.plocha,
+    minPricePerMeter: last.cena! / last.plocha,
   };
 })();
 
@@ -71,10 +102,10 @@ export default function HomePage() {
 
         // Check if the price is within the specified range
         const matchesPrice =
-          parcel.cena >= priceRange.min && parcel.cena <= priceRange.max;
+          parcel.cena! >= priceRange.min! && parcel.cena! <= priceRange.max!;
 
         // Check if the price is within the specified range
-        const pricePerM = parcel.cena / parcel.plocha;
+        const pricePerM = parcel.cena! / parcel.plocha;
         const matchesPricePerMeter =
           pricePerM >= pricePerMeterRange.min &&
           pricePerM <= pricePerMeterRange.max;
@@ -109,6 +140,10 @@ export default function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgencySchema) }}
+      />
       {mapEnlarged && (
         <div className="fixed inset-0 z-40 bg-black/80 flex items-center justify-center">
           <div className="md:p-24 h-full w-full relative">

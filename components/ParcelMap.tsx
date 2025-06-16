@@ -99,7 +99,6 @@ export default function ParcelMapBroken({
   zoom,
   autoCenter = false,
   onParcelClick,
-  children
 }: Props) {
   const layerRefs = useRef<Record<string, Layer>>({});
   const mapRef = useRef<L.Map | null>(null);
