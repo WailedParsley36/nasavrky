@@ -2,204 +2,191 @@ export interface Parcela {
   id: string;
   nazev: string;
   lokalita: string;
-  cena: number;
   plocha: number;
+  cena?: number;
   obrazky: string[];
   prodano?: boolean;
+  rezervovano?: boolean;
 }
 
-export const AllParcels: Parcela[] = [
+export const pricePerMeter = 3450;
+
+[
+  "/pozemky/2053.1011/1.webp", "/pozemky/2053.1011/2.webp", "/pozemky/2053.1011/3.webp", "/pozemky/2053.1011/4.webp", "/pozemky/2053.1011/5.webp", "/pozemky/2053.1011/6.webp", "/pozemky/2053.1011/7.webp", "/pozemky/2053.1011/8.webp"
+]
+
+let a = ["/pozemky/2053.1011/1.webp", "/pozemky/2053.1011/2.webp", "/pozemky/2053.1011/3.webp", "/pozemky/2053.1011/4.webp", "/pozemky/2053.1011/5.webp", "/pozemky/2053.1011/6.webp", "/pozemky/2053.1011/7.webp", "/pozemky/2053.1011/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
+
+let AllParcels: Parcela[] = [
+  {
+    id: "2000/44",
+    nazev: "Ukázka rezervovaného pozemku",
+    lokalita: "Větrná 415-400, 538 25 Nasavrky",
+    plocha: 867,
+    rezervovano: true,
+    obrazky: ["/pozemky/2052.67/5.webp", "/pozemky/2052.67/2.webp", "/pozemky/2052.67/3.webp", "/pozemky/2052.67/4.webp", "/pozemky/2052.67/1.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
+  },
   {
     id: "2052/6",
     nazev: "Pozemek 2052/6",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2195000,
     plocha: 878,
-    obrazky: ["/parcely/2052.6/1.jpg"],
-    prodano: true
+    obrazky: ["/pozemky/2052.67/1.webp", "/pozemky/2052.67/2.webp", "/pozemky/2052.67/3.webp", "/pozemky/2052.67/4.webp", "/pozemky/2052.67/5.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2053/3",
     nazev: "Pozemek 2053/3",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2207500,
     plocha: 883,
-    obrazky: ["/parcely/2053.3/1.jpg"]
+    obrazky: ["/pozemky/2053.345/1.webp", "/pozemky/2053.345/2.webp", "/pozemky/2053.345/3.webp", "/pozemky/2053.345/4.webp", "/pozemky/2053.345/5.webp", "/pozemky/2053.3456/1.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2053/1",
     nazev: "Pozemek 2053/1",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2055000,
     plocha: 822,
-    obrazky: ["/parcely/2053.1/1.jpg"]
+    obrazky: ["/pozemky/2053.12/1.webp", "/pozemky/2053.12/2.webp", "/pozemky/2053.12/3.webp", "/pozemky/20523.23.12/1.webp", "/pozemky/20523.23.12/2.webp", "/pozemky/20523.23.12/3.webp", "/pozemky/20523.23.12/4.webp", "/pozemky/20523.23.12/5.webp", "/pozemky/20523.23.12/6.webp", "/pozemky/20523.23.12/7.webp"]
   },
   {
     id: "2053/2",
     nazev: "Pozemek 2053/2",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 1962500,
     plocha: 785,
-    obrazky: ["/parcely/2053.2/1.jpg"]
+    obrazky: ["/pozemky/2053.12/2.webp", "/pozemky/2053.12/1.webp", "/pozemky/2053.12/3.webp", "/pozemky/20523.23.12/1.webp", "/pozemky/20523.23.12/2.webp", "/pozemky/20523.23.12/3.webp", "/pozemky/20523.23.12/4.webp", "/pozemky/20523.23.12/5.webp", "/pozemky/20523.23.12/6.webp", "/pozemky/20523.23.12/7.webp"]
   },
   {
     id: "2052/3",
     nazev: "Pozemek 2052/3",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 1962500,
     plocha: 785,
-    obrazky: ["/parcely/2052.3/1.jpg"]
+    obrazky: ["/pozemky/2052.2,3/1.webp", "/pozemky/2052.2,3/video.mp4", "/pozemky/20523.23.12/1.webp", "/pozemky/20523.23.12/2.webp", "/pozemky/20523.23.12/3.webp", "/pozemky/20523.23.12/4.webp", "/pozemky/20523.23.12/5.webp", "/pozemky/20523.23.12/6.webp", "/pozemky/20523.23.12/7.webp"]
   },
   {
     id: "2052/2",
     nazev: "Pozemek 2052/2",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2635000,
     plocha: 1054,
-    obrazky: ["/parcely/2052.2/1.jpg"]
+    obrazky: ["/pozemky/2052.2,3/1.webp", "/pozemky/2052.2,3/video.mp4", "/pozemky/20523.23.12/1.webp", "/pozemky/20523.23.12/2.webp", "/pozemky/20523.23.12/3.webp", "/pozemky/20523.23.12/4.webp", "/pozemky/20523.23.12/5.webp", "/pozemky/20523.23.12/6.webp", "/pozemky/20523.23.12/7.webp"]
   },
   {
     id: "2052/4",
     nazev: "Pozemek 2052/4",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2202500,
     plocha: 881,
-    obrazky: ["/parcely/2052.4/1.jpg"]
+    obrazky: ["/pozemky/2052.45/1.webp", "/pozemky/2052.45/2.webp", "/pozemky/2052.45/3.webp", "/pozemky/2052.45/4.webp", "/pozemky/2052.45/5.webp", "/pozemky/2052.45/6.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2052/5",
     nazev: "Pozemek 2052/5",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2087500,
     plocha: 835,
-    obrazky: ["/parcely/2052.5/1.jpg"]
+    obrazky: ["/pozemky/2052.45/2.webp", "/pozemky/2052.45/1.webp", "/pozemky/2052.45/3.webp", "/pozemky/2052.45/4.webp", "/pozemky/2052.45/5.webp", "/pozemky/2052.45/6.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2052/7",
     nazev: "Pozemek 2052/7",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2272500,
     plocha: 909,
-    obrazky: ["/parcely/2052.7/1.jpg"]
+    obrazky: ["/pozemky/2052.67/2.webp", "/pozemky/2052.67/1.webp", "/pozemky/2052.67/3.webp", "/pozemky/2052.67/4.webp", "/pozemky/2052.67/5.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2053/9",
     nazev: "Pozemek 2053/9",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2295000,
     plocha: 918,
-    obrazky: ["/parcely/2053.9/1.jpg"]
+    obrazky: ["/pozemky/2053.789/3.webp", "/pozemky/2053.789/1.webp", "/pozemky/2053.789/1.webp", "/pozemky/2053.789/4.webp", "/pozemky/2053.789/5.webp", "/pozemky/2053.789/6.webp", "/pozemky/2053.789/7.webp", "/pozemky/2053.789/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2053/8",
     nazev: "Pozemek 2053/8",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2327500,
     plocha: 931,
-    obrazky: ["/parcely/2053.8/1.jpg"]
+    obrazky: ["/pozemky/2053.789/2.webp", "/pozemky/2053.789/1.webp", "/pozemky/2053.789/3.webp", "/pozemky/2053.789/4.webp", "/pozemky/2053.789/5.webp", "/pozemky/2053.789/6.webp", "/pozemky/2053.789/7.webp", "/pozemky/2053.789/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2053/7",
     nazev: "Pozemek 2053/7",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2082500,
     plocha: 833,
-    obrazky: ["/parcely/2053.7/1.jpg"]
+    obrazky: ["/pozemky/2053.789/1.webp", "/pozemky/2053.789/2.webp", "/pozemky/2053.789/3.webp", "/pozemky/2053.789/4.webp", "/pozemky/2053.789/5.webp", "/pozemky/2053.789/6.webp", "/pozemky/2053.789/7.webp", "/pozemky/2053.789/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2053/6",
     nazev: "Pozemek 2053/6",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2097500,
     plocha: 839,
-    obrazky: ["/parcely/2053.6/1.jpg"]
+    obrazky: ["/pozemky/2053.6/1.webp", "/pozemky/2053.6/2.webp", "/pozemky/2053.6/3.webp", "/pozemky/2053.6/4.webp", "/pozemky/2053.6/5.webp", "/pozemky/2053.3456/1.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2053/5",
     nazev: "Pozemek 2053/5",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2255000,
     plocha: 902,
-    obrazky: ["/parcely/2053.5/1.jpg"]
+    obrazky: ["/pozemky/2053.345/3.webp", "/pozemky/2053.345/1.webp", "/pozemky/2053.345/2.webp", "/pozemky/2053.345/4.webp", "/pozemky/2053.345/5.webp", "/pozemky/2053.3456/1.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2053/4",
     nazev: "Pozemek 2053/4",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2395000,
     plocha: 958,
-    obrazky: ["/parcely/2053.4/1.jpg"]
-  },
-  {
-    id: "2052/10",
-    nazev: "Pozemek 2052/10",
-    lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 587500,
-    plocha: 235,
-    obrazky: ["/parcely/2052.10/1.jpg"]
+    obrazky: ["/pozemky/2053.345/2.webp", "/pozemky/2053.345/1.webp", "/pozemky/2053.345/3.webp", "/pozemky/2053.345/4.webp", "/pozemky/2053.345/5.webp", "/pozemky/2053.3456/1.webp", "/pozemky/prostred/1.webp", "/pozemky/prostred/2.webp", "/pozemky/prostred/3.webp", "/pozemky/prostred/4.webp", "/pozemky/prostred/5.webp", "/pozemky/prostred/6.webp", "/pozemky/prostred/7.webp"]
   },
   {
     id: "2052/8",
     nazev: "Pozemek 2052/8",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2455000,
     plocha: 982,
-    obrazky: ["/parcely/2052.8/1.jpg"]
+    obrazky: ["/pozemky/2052.89/1.webp", "/pozemky/2052.89/2.webp", "/pozemky/2052.89/3.webp", "/pozemky/2052.89/4.webp", "/pozemky/2052.89/5.webp", "/pozemky/2052.89/6.webp", "/pozemky/2052.89/7.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2052/9",
     nazev: "Pozemek 2052/9",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2470000,
     plocha: 988,
-    obrazky: ["/parcely/2052.9/1.jpg"]
+    obrazky: ["/pozemky/2052.89/2.webp", "/pozemky/2052.89/1.webp", "/pozemky/2052.89/3.webp", "/pozemky/2052.89/4.webp", "/pozemky/2052.89/5.webp", "/pozemky/2052.89/6.webp", "/pozemky/2052.89/7.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2051/4",
     nazev: "Pozemek 2051/4",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2805000,
     plocha: 1122,
-    obrazky: ["/parcely/2051.4/1.jpg"]
+    obrazky: ["/pozemky/2051.432/1.webp", "/pozemky/2051.432/2.webp", "/pozemky/2051.432/3.webp", "/pozemky/2051.432/4.webp", "/pozemky/2051.432/5.webp", "/pozemky/2051.432/6.webp", "/pozemky/2051.432/7.webp", "/pozemky/2051.432/8.webp", "/pozemky/2051.432/9.webp", "/pozemky/2051.432/10.webp", "/pozemky/2051.432/11.webp", "/pozemky/2051.432/12.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2051/3",
     nazev: "Pozemek 2051/3",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2390000,
     plocha: 956,
-    obrazky: ["/parcely/2051.3/1.jpg"]
+    obrazky: ["/pozemky/2051.432/2.webp", "/pozemky/2051.432/1.webp", "/pozemky/2051.432/3.webp", "/pozemky/2051.432/4.webp", "/pozemky/2051.432/5.webp", "/pozemky/2051.432/6.webp", "/pozemky/2051.432/7.webp", "/pozemky/2051.432/8.webp", "/pozemky/2051.432/9.webp", "/pozemky/2051.432/10.webp", "/pozemky/2051.432/11.webp", "/pozemky/2051.432/12.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2051/2",
     nazev: "Pozemek 2051/2",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2462500,
     plocha: 985,
-    obrazky: ["/parcely/2051.2/1.jpg"]
+    obrazky: ["/pozemky/2051.432/3.webp", "/pozemky/2051.432/1.webp", "/pozemky/2051.432/1.webp", "/pozemky/2051.432/4.webp", "/pozemky/2051.432/5.webp", "/pozemky/2051.432/6.webp", "/pozemky/2051.432/7.webp", "/pozemky/2051.432/8.webp", "/pozemky/2051.432/9.webp", "/pozemky/2051.432/10.webp", "/pozemky/2051.432/11.webp", "/pozemky/2051.432/12.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2053/11",
     nazev: "Pozemek 2053/11",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2330000,
     plocha: 932,
-    obrazky: ["/parcely/2053.11/1.jpg"]
+    prodano: true,
+    obrazky: ["/pozemky/2053.1011/2.webp", "/pozemky/2053.1011/1.webp", "/pozemky/2053.1011/3.webp", "/pozemky/2053.1011/4.webp", "/pozemky/2053.1011/5.webp", "/pozemky/2053.1011/6.webp", "/pozemky/2053.1011/7.webp", "/pozemky/2053.1011/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   },
   {
     id: "2053/10",
     nazev: "Pozemek 2053/10",
     lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 2190000,
     plocha: 876,
-    obrazky: ["/parcely/2053.10/1.jpg"]
-  },
-  {
-    id: "2053/12",
-    nazev: "Pozemek 2053/12",
-    lokalita: "Větrná 415-400, 538 25 Nasavrky",
-    cena: 1665000,
-    plocha: 666,
-    obrazky: ["/parcely/2053.12/1.jpg"]
+    obrazky: ["/pozemky/2053.1011/1.webp", "/pozemky/2053.1011/2.webp", "/pozemky/2053.1011/3.webp", "/pozemky/2053.1011/4.webp", "/pozemky/2053.1011/5.webp", "/pozemky/2053.1011/6.webp", "/pozemky/2053.1011/7.webp", "/pozemky/2053.1011/8.webp", "/pozemky/zadni/1.webp", "/pozemky/zadni/2.webp", "/pozemky/zadni/3.webp", "/pozemky/zadni/4.webp", "/pozemky/zadni/5.webp", "/pozemky/zadni/6.webp", "/pozemky/zadni/7.webp"]
   }
 ];
+
+AllParcels.forEach((parcela) => {
+  if (!parcela.cena) {
+    parcela.cena = Math.round(parcela.plocha * pricePerMeter);
+  }
+})
+
+export function getAllParcels() { return AllParcels };

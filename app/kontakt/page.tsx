@@ -11,12 +11,17 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { NasavrkyMap } from "../../components/ParcelMapWithoutSSR";
+import { MdPhonelinkErase } from "react-icons/md";
 
 function ContactPage() {
+  const nameRef = React.useRef<HTMLInputElement>(null);
+  const telRef = React.useRef<HTMLInputElement>(null);
+  const bodyRef = React.useRef<HTMLTextAreaElement>(null);
+
   return (
     <>
       <Head>
-        <title>Kontakt | Stavební parcely Nasavrky</title>
+        <title>Kontakt | Stavební pozemky Nasavrky</title>
         <meta
           name="description"
           content="Kontaktní informace pro zájemce o stavební parcely v Nasavrkách"
@@ -163,7 +168,24 @@ function ContactPage() {
                 Vyplňte formulář a my se vám ozveme co nejdříve.
               </p>
 
-              <form>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const recipient = "info@nasavrky.cz";
+                const subject = `${nameRef.current?.value} - Poptávka po pozemku`;
+                const body = bodyRef.current!.textContent!.length > 5 ? bodyRef.current?.textContent : `Dobrý den,
+
+rád bych se nezávazně zeptal na možnost koupi pozemku ve vaší oblasti. Mám zájem o pozemek XXXX.
+
+Byl bych rád, kdybyste mě mohli informovat o aktuálních nabídkách nebo o možnostech získání informací o pozemcích určených k prodeji.
+
+Děkuji za Váš čas a případnou odpověď.
+
+S pozdravem,
+${nameRef.current?.value}
+Tel: ${telRef.current?.value}`;
+
+                window.open(`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`)
+              }}>
                 <div className="mb-4">
                   <label
                     htmlFor="name"
@@ -174,21 +196,7 @@ function ContactPage() {
                   <input
                     type="text"
                     id="name"
-                    className="w-full p-2 border rounded-lg focus:ring-amber-500 focus:border-amber-500"
-                    required
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
+                    ref={nameRef}
                     className="w-full p-2 border rounded-lg focus:ring-amber-500 focus:border-amber-500"
                     required
                   />
@@ -203,6 +211,7 @@ function ContactPage() {
                   </label>
                   <input
                     type="tel"
+                    ref={telRef}
                     id="phone"
                     className="w-full p-2 border rounded-lg focus:ring-amber-500 focus:border-amber-500"
                   />
@@ -218,8 +227,8 @@ function ContactPage() {
                   <textarea
                     id="message"
                     rows={5}
+                    ref={bodyRef}
                     className="w-full p-2 border rounded-lg focus:ring-amber-500 focus:border-amber-500"
-                    required
                   ></textarea>
                 </div>
 

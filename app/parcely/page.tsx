@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { Parcela } from "../../ParcelData";
-import { AllParcels } from "../../ParcelData";
+import { getAllParcels } from "../../ParcelData";
 import { ParcelMap } from "../../components/ParcelMapWithoutSSR";
 import { useRouter } from "next/navigation";
 import ParcelCard from "../../components/ParcelCard";
 import base64url from "base64url";
 
 import MultiRangeSlider from "../../components/multi-range/MultiRangeSlider";
+
+const AllParcels = getAllParcels();
 
 const { maxPrice, minPrice } = (() => {
   const result = AllParcels.sort((x, y) => y.cena - x.cena);

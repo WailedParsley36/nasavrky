@@ -21,9 +21,18 @@ export default function ParcelCard({ parcel }: ParcelCardProps) {
         {/* Sold overlay */}
         {parcel.prodano && (
           <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <div className="absolute inset-0 bg-black/20"></div>
+            <div className="absolute inset-0 bg-black/40"></div>
             <div className="bg-red-500/80 text-white font-bold py-2 px-6 rounded-lg transform -rotate-12 text-2xl z-20">
               PRODÁNO
+            </div>
+          </div>
+        )}
+        {/* Reservation overlay */}
+        {parcel.rezervovano && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/40"></div>
+            <div className="bg-orange-500/80 text-white font-bold py-2 px-6 rounded-lg transform -rotate-12 text-2xl z-20">
+              REZERVOVÁNO
             </div>
           </div>
         )}
@@ -46,10 +55,12 @@ export default function ParcelCard({ parcel }: ParcelCardProps) {
             href={`/parcely/${base64url(parcel.id)}`}
             className={`${parcel.prodano
               ? "bg-red-700 text-white py-2 px-4 rounded-md hover:bg-red-700/90 transition duration-300"
-              : "btn-primary"
+              : parcel.rezervovano
+                ? "bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-500/90 transition duration-300"
+                : "btn-primary"
               } inline-block w-full text-center`}
           >
-            {parcel.prodano ? "Prodáno" : "Zobrazit detail"}
+            {parcel.prodano ? "Prodáno" : parcel.rezervovano ? "Rezervováno" : "Zobrazit detail"}
           </Link>
         </div>
       </div>

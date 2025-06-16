@@ -59,12 +59,6 @@ export default function Footer() {
             © {new Date().getFullYear()} Město Nasavrky. Všechna práva
             vyhrazena.
           </p>
-          <p className="text-sm mt-3">
-            Tvůrce webu{" "}
-            <Link href={"https://linkedin.com/in/patrik-stohanzl"} className="underline">
-              Patrik Stohanzl
-            </Link>
-          </p>
         </div>
       </div>
     </footer>

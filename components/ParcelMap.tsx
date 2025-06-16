@@ -3,7 +3,9 @@ import { CSSProperties, SVGProps, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, useMap, GeoJSON } from "react-leaflet";
 import buildings from "../homes.json";
 import { LatLngExpression, Layer, PathOptions } from "leaflet";
-import { AllParcels, Parcela } from "../ParcelData";
+import { getAllParcels, Parcela } from "../ParcelData";
+
+const AllParcels = getAllParcels();
 
 const featureStyle: PathOptions = {
   color: "#E2AC36",
@@ -23,6 +25,15 @@ const soldFeatureStyle: PathOptions = {
   fillColor: "#c10007",
 };
 
+const reservedFeatureStyle: PathOptions = {
+  color: "#a15b00",
+  dashArray: "4",
+  stroke: true,
+  opacity: 0.7,
+  fillOpacity: 0.1,
+  fillColor: "#a15b00",
+};
+
 const highlightStyle: PathOptions = {
   color: "#E2AC36",
   opacity: 1,
@@ -39,6 +50,15 @@ const soldHighlightStyle: PathOptions = {
   dashArray: "0",
   fillOpacity: 0.4,
   fillColor: "#c10007",
+};
+
+const reservedHighlightStyle: PathOptions = {
+  color: "#a15b00",
+  opacity: 1,
+  stroke: true,
+  dashArray: "0",
+  fillOpacity: 0.4,
+  fillColor: "#a15b00",
 };
 
 export function MapScroller() {
@@ -126,7 +146,7 @@ export default function ParcelMapBroken({
           }
 
           // @ts-ignore
-          layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
+          layer.setStyle(parcela?.prodano ? soldFeatureStyle : parcela?.rezervovano ? reservedFeatureStyle : featureStyle);
           // @ts-ignore
           layer.getElement()?.classList.remove("hidden");
         } else {
@@ -161,7 +181,7 @@ export default function ParcelMapBroken({
         }
 
         // @ts-ignore
-        layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
+        layer.setStyle(parcela?.prodano ? soldFeatureStyle : parcela?.rezervovano ? reservedFeatureStyle : featureStyle);
         // @ts-ignore
         layer.getElement()?.classList.remove("hidden");
       } else {
@@ -176,7 +196,7 @@ export default function ParcelMapBroken({
       }
     } else {
       // @ts-ignore
-      layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
+      layer.setStyle(parcela?.prodano ? soldFeatureStyle : parcela?.rezervovano ? reservedFeatureStyle : featureStyle);
     }
 
     layer.on({
@@ -185,12 +205,12 @@ export default function ParcelMapBroken({
       },
       mouseover: (e) => {
         const layer = e.target;
-        layer.setStyle(parcela?.prodano ? soldHighlightStyle : highlightStyle);
+        layer.setStyle(parcela?.prodano ? soldHighlightStyle : parcela?.rezervovano ? reservedHighlightStyle : highlightStyle);
         layer.bringToFront();
       },
       mouseout: (e) => {
         const layer = e.target;
-        layer.setStyle(parcela?.prodano ? soldFeatureStyle : featureStyle);
+        layer.setStyle(parcela?.prodano ? soldFeatureStyle : parcela?.rezervovano ? reservedFeatureStyle : featureStyle);
       },
     });
   }

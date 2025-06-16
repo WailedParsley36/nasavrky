@@ -15,8 +15,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stavební parcely Nasavrky",
-  description: "Váš vysněný domov začíná zde v naší půvabné obci",
+  title: "Stavební pozemky Nasavrky - zasíťované parcely k prodeji",
+  description:
+    "Hledáte ideální místo pro stavbu vašeho rodinného domu? Objevte stavební pozemky v Nasavrkách — kompletně zasíťované a připravené ke stavbě. Bydlete v krásné lokalitě Železných hor, jen pár minut od Pardubic a Chrudimi.",
+  keywords: [
+    "stavební pozemky Nasavrky",
+    "pozemky na prodej Nasavrky",
+    "zasíťované parcely",
+    "pozemky Pardubický kraj",
+    "bydlení Železné hory",
+    "parcely Chrudim",
+    "pozemky Pardubice",
+    "prodej pozemků Nasavrky",
+  ],
+  openGraph: {
+    title: "Stavební pozemky Nasavrky",
+    description: "Kompletně zasíťované parcely k prodeji v Nasavrkách.",
+    url: "https://nasavrky.vercel.app",
+    siteName: "Stavební parcely Nasavrky",
+    images: [
+      {
+        url: "https://nasavrky.vercel.app/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Krajina Nasavrk a stavební parcely",
+      },
+    ],
+    locale: "cs_CZ",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stavební pozemky Nasavrky",
+    description: "Kompletně zasíťované parcely k prodeji v Nasavrkách.",
+    images: ["https://nasavrky.vercel.app/hero.jpg"], // Replace with an actual Twitter Card image URL
+  },
+  // Add canonical URL if needed (e.g., if you have multiple URLs for the same content)
+  // metadataBase: new URL('https://www.vasestranka.cz'), // If you want to use relative paths for images, etc.
+  alternates: {
+    canonical: '/', // For the homepage, this is typically just '/' or the base URL
+  },
 };
 
 export default function RootLayout({
