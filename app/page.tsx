@@ -38,6 +38,51 @@ const realEstateAgencySchema = {
   "openingHours": "Mo-Fr 08:00-16:00",
 };
 
+const whyChooseNasavrkyPoints = [
+  {
+    title: "Stavba bez kompromisů",
+    description: `Žádné skryté náklady ani zdlouhavé vyřizování. Nabízíme ${availableParcelsCount} stavebních pozemků o rozloze 800–1000 m². Jsou kompletně připravené pro váš projekt. Každá parcela je plně zasíťovaná – s přivedenou elektřinou, vodou, kanalizací a optickým internetem. Můžete tak začít stavět okamžitě a ušetřit tisíce korun i drahocenný čas.`,
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-4 flex-shrink-0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" /></svg>,
+    borderColorClass: 'border-green-600',
+  },
+  {
+    title: "Dechberoucí výhledy",
+    description: "Probuďte se s panoramatickými výhledy do malebné a chráněné krajinné oblasti Železných hor. Dýchejte křišťálově čistý vzduch a užívejte si bezkonkurenční klid. Lokalita je ideální pro relaxaci i aktivní životní styl. Okolí nabízí kilometry cyklostezek, turistických tras a nespočet příležitostí pro rodinné výlety a outdoorové aktivity.",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500 mr-4 flex-shrink-0"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></svg>,
+    borderColorClass: 'border-blue-500',
+  },
+  {
+    title: "Pohodlí pro rodinu",
+    description: "Zapomeňte na ranní spěch a dlouhé dojíždění. V Nasavrkách najdete moderní, architektonicky oceněnou mateřskou školku s bezbariérovým přístupem. Nechybí ani kompletní základní škola přímo v obci. Vaše děti to budou mít do školy doslova pár minut pěšky. To vám zajistí více klidu, času a bezpečí pro celou rodinu.",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-500 mr-4 flex-shrink-0"><path d="M14 22v-4a2 2 0 0 0-2-2L6 16c-2 0-3-1-3-3V7c0-2 2-3 4-3h10c2 0 4 1 4 3v1" /><path d="M18 22V8.5L12 2L6 8.5V22" /><path d="M12 22v-16" /><path d="M2 14.24a6 6 0 0 0 12 0" /></svg>,
+    borderColorClass: 'border-yellow-500',
+  },
+  {
+    title: "Vše na jednom místě",
+    description: "Užijte si komfort života, kde máte vše, co potřebujete, přímo na dosah ruky. V Nasavrkách naleznete poštu, lékaře, lékárnu, široký výběr potravin, řeznictví, drogerii, papírnictví a zahrádkářství. Pro společenské vyžití jsou k dispozici čtyři útulné restaurace a příjemná kavárna. Dlouhé cesty za nákupy jsou minulostí!",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500 mr-4 flex-shrink-0"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>,
+    borderColorClass: 'border-purple-500',
+  },
+  {
+    title: "Aktivní životní styl",
+    description: "Ať už jste nadšenci do sportu, nebo jen hledáte relaxaci, Nasavrky vás nadchnou. K dispozici je fotbalové hřiště s moderní workout zónou. Dále hřiště na volejbal i beach volejbal. Nechybí ani sokolovna s tělocvičnou, badmintonem, florbalem a jógou. Naleznete zde i skatepark, tenisové kurty a víceúčelové hřiště u školy. Vše v docházkové vzdálenosti pro zdravý a aktivní život.",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500 mr-4 flex-shrink-0"><path d="M14.4 14.4 9.6 9.6" /><path d="M18.8 4.6l-3.2 3.2" /><path d="M16.6 7.8l3.2-3.2" /><path d="M8.6 15.4l-3.2 3.2" /><path d="M4.6 18.8l3.2-3.2" /><path d="M18 10a6 6 0 0 1-6 6v0a6 6 0 0 1-6-6v0a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v0" /></svg>,
+    borderColorClass: 'border-red-500',
+  },
+  {
+    title: "Klid a rychlé spojení",
+    description: "Užijte si perfektní rovnováhu: klidné venkovské bydlení s bleskovým spojením do větších městských center. Jsme pouhých 20 km od krajského města Pardubice a jen 11 km do Chrudimi. Rychlé napojení na hlavní silnici I/37 a dálniční síť D1 zajišťuje pohodlné dojíždění do práce i za kulturu. Ideální kombinace klidu a dostupnosti pro váš život.",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-orange-500 mr-4 flex-shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><circle cx="12" cy="10" r="3" /></svg>,
+    borderColorClass: 'border-orange-500',
+  },
+  {
+    title: "Místo, kde se budete cítit doma",
+    description: "Staňte se součástí přátelské a aktivní komunity, kde se budete cítit okamžitě jako doma. Nasavrky se pyšní novou hasičskou zbrojnicí, moderním náměstím a krásně upraveným veřejným prostorem. Pravidelně zde probíhají kulturní a sportovní akce (dětské dny, cykloakce, slavnosti), které posilují sousedské vztahy a vytvářejí jedinečnou atmosféru.",
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-teal-500 mr-4 flex-shrink-0"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M6 17a4 4 0 0 1-3-3.87" /></svg>,
+    borderColorClass: 'border-teal-500',
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -58,7 +103,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 flex items-center justify-center p-4">
           <div className="text-center text-white max-w-5xl z-10">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl animate-slide-up">
-              Nasavrky: Váš nový domov v srdci Železných hor
+              Váš nový domov v srdci<br /> Železných hor
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-10 font-light drop-shadow-xl animate-fade-in delay-300">
               Objevte {availableParcelsCount} exkluzivních parcel připravených k okamžité stavbě.
@@ -76,93 +121,36 @@ export default function Home() {
       {/* --- Sekce Proč zvolit Nasavrky - Více strukturované a plynulé texty --- */}
       <section className="py-24 bg-gradient-to-br from-white to-gray-50 animate-fade-in-section">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-primary mb-20 animate-slide-up">
-            Nasavrky: Proč je to vaše ideální místo pro nový začátek?
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-primary mb-12 animate-slide-up">
+            Proč si vybrat Nasavrky? Důvody, proč je to ideální místo pro váš nový domov.
           </h2>
+          <p className="text-base text-gray-700 text-center mb-20 max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+            Nasavrky nejsou jen adresa, jsou to domov. Objevte klíčové výhody, které z této malebné obce dělají perfektní volbu pro život plný klidu, přírody a zároveň s veškerým pohodlím moderního bydlení.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Kompletně připravené parcely */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-100">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-green-600 text-4xl mr-4">✅</span> Zasíťované parcely: Stavba bez kompromisů
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Žádné skryté náklady ani zdlouhavé vyřizování. Nabízíme {availableParcelsCount} stavebních pozemků o rozloze 800–1000 m². Jsou kompletně připravené pro váš projekt. Každá parcela je plně zasíťovaná – s přivedenou elektřinou, vodou, kanalizací a optickým internetem. Můžete tak začít stavět okamžitě a ušetřit tisíce korun i drahocenný čas.
-              </p>
-            </div>
-
-            {/* Panoramatické výhledy a příroda */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-blue-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-200">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-blue-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-blue-600 text-4xl mr-4">🏞️</span> Život v Železných horách: Dechberoucí výhledy
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Probuďte se s panoramatickými výhledy do malebné a chráněné krajinné oblasti Železných hor. Dýchejte křišťálově čistý vzduch a užívejte si bezkonkurenční klid. Lokalita je ideální pro relaxaci i aktivní životní styl. Okolí nabízí kilometry cyklostezek, turistických tras a nespočet příležitostí pro rodinné výlety a outdoorové aktivity.
-              </p>
-            </div>
-
-            {/* Škola a školka pár kroků od domu */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-yellow-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-300">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-yellow-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-yellow-600 text-4xl mr-4">🏫</span> Vzdělání na dosah: Pohodlí pro rodinu
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Zapomeňte na ranní spěch a dlouhé dojíždění. V Nasavrkách najdete moderní, architektonicky oceněnou mateřskou školku s bezbariérovým přístupem. Nechybí ani kompletní základní škola přímo v obci. Vaše děti to budou mít do školy doslova pár minut pěšky. To vám zajistí více klidu, času a bezpečí pro celou rodinu.
-              </p>
-            </div>
-
-            {/* Vše potřebné na dosah */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-400">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-purple-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-purple-600 text-4xl mr-4">🛍️</span> Kompletní občanská vybavenost: Vše na jednom místě
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Užijte si komfort života, kde máte vše, co potřebujete, přímo na dosah ruky. V Nasavrkách naleznete poštu, lékaře, lékárnu, široký výběr potravin, řeznictví, drogerii, papírnictví a zahrádkářství. Pro společenské vyžití jsou k dispozici čtyři útulné restaurace a příjemná kavárna. Dlouhé cesty za nákupy jsou minulostí!
-              </p>
-            </div>
-
-            {/* Sportovní a volnočasové vyžití */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-red-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-500">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-red-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-red-600 text-4xl mr-4">⚽</span> Sport a relax: Aktivní životní styl
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Ať už jste nadšenci do sportu, nebo jen hledáte relaxaci, Nasavrky vás nadchnou. K dispozici je fotbalové hřiště s moderní workout zónou. Dále hřiště na volejbal i beach volejbal. Nechybí ani sokolovna s tělocvičnou, badmintonem, florbalem a jógou. Naleznete zde i skatepark, tenisové kurty a víceúčelové hřiště u školy. Vše v docházkové vzdálenosti pro zdravý a aktivní život.
-              </p>
-            </div>
-
-            {/* Skvělá dopravní dostupnost */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-orange-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-600">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-orange-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-orange-600 text-4xl mr-4">🛣️</span> Strategická poloha: Klid a rychlé spojení
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Užijte si perfektní rovnováhu: klidné venkovské bydlení s bleskovým spojením do větších městských center. Jsme pouhých 20 km od krajského města Pardubice a jen 11 km do Chrudimi. Rychlé napojení na hlavní silnici I/37 a dálniční síť D1 zajišťuje pohodlné dojíždění do práce i za kulturou. Ideální kombinace klidu a dostupnosti pro váš život.
-              </p>
-            </div>
-
-            {/* Silná komunita a moderní veřejný prostor */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-teal-500 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card delay-700">
-              <div className="absolute top-0 left-0 w-24 h-24 bg-teal-500/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
-                <span className="text-teal-600 text-4xl mr-4">🤝</span> Živá komunita: Místo, kde se budete cítit doma
-              </h3>
-              <p className="text-base text-gray-700 leading-relaxed relative z-10">
-                Staňte se součástí přátelské a aktivní komunity, kde se budete cítit okamžitě jako doma. Nasavrky se pyšní novou hasičskou zbrojnicí, moderním náměstím a krásně upraveným veřejným prostorem. Pravidelně zde probíhají kulturní a sportovní akce (dětské dny, cykloakce, slavnosti), které posilují sousedské vztahy a vytvářejí jedinečnou atmosféru.
-              </p>
-            </div>
-
+            {whyChooseNasavrkyPoints.map((point, index) => (
+              <div
+                key={index}
+                className={`bg-white p-8 rounded-2xl shadow-xl ${point.borderColorClass} hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative group overflow-hidden animate-fade-in-card`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-full -mt-12 -ml-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center relative z-10">
+                  {point.icon}
+                  {point.title}
+                </h3>
+                <p className="text-base text-gray-700 leading-relaxed relative z-10">
+                  {point.description}
+                </p>
+              </div>
+            ))}
           </div>
+
           <div className="text-center mt-12">
-            <Link href="/kontakt" className="btn-primary text-base md:text-xl px-8 py-4 inline-block">
+            <a href="/kontakt" className="btn-primary text-base md:text-xl px-8 py-4 inline-block">
               Domluvte si prohlídku Nasavrk a objevte svůj sen!
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -201,18 +189,18 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2
             id="info"
-            className="text-3xl sm:text-4xl font-extrabold text-center text-primary mb-20 animate-slide-up"
+            className="text-3xl sm:text-4xl font-extrabold text-center text-primary mb-12 sm:mb-20 animate-slide-up"
           >
             Váš průvodce krok za krokem: Koupě parcely nikdy nebyla snazší
           </h2>
 
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="flex items-start bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-100">
-                <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start bg-gray-50 p-6 sm:p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-100">
+                <div className="bg-primary hidden sm:flex text-white rounded-full sm:w-12 sm:h-12 items-center justify-center flex-shrink-0 text-xl sm:text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
                   1
                 </div>
-                <div className="ml-6">
+                <div className="ml-2 sm:ml-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     Objevte svůj vysněný pozemek online
                   </h3>
@@ -222,11 +210,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-start bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-200">
-                <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start bg-gray-50 p-6 sm:p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-200">
+                <div className="bg-primary hidden sm:flex text-white rounded-full sm:w-12 sm:h-12 items-center justify-center flex-shrink-0 text-xl sm:text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
                   2
                 </div>
-                <div className="ml-6">
+                <div className="ml-2 sm:ml-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     Prohlídka s odborníkem a konzultace
                   </h3>
@@ -236,11 +224,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-start bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-300">
-                <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start bg-gray-50 p-6 sm:p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-300">
+                <div className="bg-primary hidden sm:flex text-white rounded-full sm:w-12 sm:h-12 items-center justify-center flex-shrink-0 text-xl sm:text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
                   3
                 </div>
-                <div className="ml-6">
+                <div className="ml-2 sm:ml-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     Komplexní právní a finanční podpora
                   </h3>
@@ -250,11 +238,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-start bg-gray-50 p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-400">
-                <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
+              <div className="flex items-start bg-gray-50 p-6 sm:p-8 rounded-xl shadow-md border-l-4 border-primary group hover:shadow-lg transition-shadow duration-300 animate-fade-in-card delay-400">
+                <div className="bg-primary hidden sm:flex text-white rounded-full sm:w-12 sm:h-12 items-center justify-center flex-shrink-0 text-xl sm:text-2xl font-bold mt-1 shadow-md group-hover:scale-110 transition-transform duration-300">
                   4
                 </div>
-                <div className="ml-6">
+                <div className="ml-2 sm:ml-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     Zrealizujte svůj sen: Koupě a okamžitá stavba
                   </h3>
@@ -266,9 +254,9 @@ export default function Home() {
             </div>
 
             <div className="mt-20 text-center">
-              <Link href="/kontakt" className="btn-primary text-base inline-block md:text-xl px-10 py-5 font-bold transition duration-300 ease-in-out hover:scale-105 transform hover:shadow-2xl animate-pop-in delay-500">
+              <a href="/kontakt" className="btn-primary text-base inline-block md:text-xl px-10 py-5 font-bold transition duration-300 ease-in-out hover:scale-105 transform hover:shadow-2xl animate-pop-in delay-500">
                 Nezávazně se poptejte - Začněte svou cestu k domovu!
-              </Link>
+              </a>
             </div>
           </div>
         </div>

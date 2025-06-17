@@ -183,10 +183,13 @@ export default function PropertyDetailPage({ parcel: currentParcel }: { parcel: 
                         <div className="mb-10 animate-fade-in delay-300">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-primary/20 pb-2">Popis pozemku</h2>
                             <p className="text-gray-700 mb-4 leading-relaxed">
-                                Nabízíme k prodeji krásný, slunný pozemek v malebném městečku Nasavrky, situovaný v klidné lokalitě s výhledem na okolní přírodu. Tento pozemek je ideální volbou pro ty, kteří sní o výstavbě rodinného domu, rekreačního objektu nebo hledají strategickou investiční příležitost.
+                                Nabízíme k prodeji <strong>krásný, slunný stavební pozemek</strong> v malebném městečku Nasavrky. Nachází se v klidné lokalitě s úchvatným výhledem na okolní přírodu Železných hor. Tento pozemek je ideální volbou pro ty, kteří sní o výstavbě <strong>rodinného domu bez starostí</strong>.
+                            </p>
+                            <p className="text-gray-700 mb-4 leading-relaxed">
+                                S celkovou výměrou <strong>{currentParcel.plocha} m²</strong> je pozemek <strong>plně zasíťovaný</strong> – to znamená, že na hranici parcely jsou přivedeny veškeré inženýrské sítě: <strong>elektřina, voda, kanalizace a optický internet</strong>. Můžete tak začít stavět okamžitě a bez dalších nákladů na připojení.
                             </p>
                             <p className="text-gray-700 leading-relaxed">
-                                S celkovou výměrou {currentParcel.plocha} m² se pozemek nachází v rozvojové zóně obce, což zajišťuje výbornou dostupnost ke všem klíčovým službám. V bezprostřední blízkosti naleznete veškerou občanskou vybavenost – školy, školky, obchody, restaurace a sportoviště. Lokalita Nasavrk nabízí dechberoucí výhledy do okolní krajiny a nekonečné možnosti pro rekreaci a aktivní odpočinek v přírodě.
+                                Pozemek se nachází v rozvojové zóně obce s <strong>výbornou dostupností ke všem klíčovým službám</strong>. V bezprostřední blízkosti naleznete veškerou občanskou vybavenost – školy, školky, obchody, restaurace a sportoviště. Lokalita Nasavrk navíc nabízí nekonečné možnosti pro rekreaci a aktivní odpočinek v přírodě.
                             </p>
                         </div>
 
