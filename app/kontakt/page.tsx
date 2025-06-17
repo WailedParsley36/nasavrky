@@ -47,6 +47,32 @@ const realEstateAgencySchema = {
   "openingHours": "Mo-Fr 08:00-16:00",
 };
 
+const IconBus = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-4 flex-shrink-0">
+    <path d="M18 6H8a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V10a4 4 0 0 0-4-4Z" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="18" y1="2" x2="18" y2="6" />
+    <path d="M12 10v4" />
+    <path d="M15 10v4" />
+    <path d="M9 10v4" />
+  </svg>
+);
+
+const IconShop = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-4 flex-shrink-0">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+    <path d="M3 6h18" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
+  </svg>
+);
+
+const IconNature = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-teal-600 mr-4 flex-shrink-0">
+    <path d="M17.42 6.35a7 7 0 0 0-9.88 0C6.35 7.46 6 8.94 6 10s.35 2.54 1.54 3.73l6.46 6.47a1.5 1.5 0 0 0 2.12 0l4.24-4.24a7 7 0 0 0 0-9.88z" />
+    <line x1="15.82" y1="8.18" x2="8.18" y2="15.82" />
+  </svg>
+);
+
 function ContactPage() {
   const nameRef = React.useRef<HTMLInputElement>(null);
   const telRef = React.useRef<HTMLInputElement>(null);
@@ -273,81 +299,40 @@ Tel: ${telRef.current?.value}`;
               </form>
             </div>
 
-            {/* Benefits */}
+            {/* Improved Benefits Panel */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-4">Proč Nasavrky?</h2>
+              <h2 className="text-xl font-bold mb-7.5">Proč Nasavrky?</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-6"> {/* Zvětšena mezera mezi položkami */}
+                {/* Benefit 1: Vynikající dopravní dostupnost */}
                 <div className="flex items-start">
-                  <div className="text-gray-400 mr-4 mt-1">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4 16C4 17.1 4.9 18 6 18H7V19C7 19.55 7.45 20 8 20H9C9.55 20 10 19.55 10 19V18H14V19C14 19.55 14.45 20 15 20H16C16.55 20 17 19.55 17 19V18H18C19.1 18 20 17.1 20 16V6C20 2.5 16.42 2 12 2C7.58 2 4 2.5 4 6V16Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
+                  <IconBus />
                   <div>
-                    <h3 className="font-bold">Skvělá dostupnost</h3>
+                    <h3 className="font-bold text-gray-800">Vynikající dopravní dostupnost</h3>
                     <p className="text-gray-600 text-sm">
-                      Ve městě jsou 2 aut. zastávky, díky kterým se dostanete
-                      kam potřebujete
+                      Město disponuje strategickou polohou a efektivním dopravním spojením, včetně několika autobusových zastávek, které zajišťují rychlou a pohodlnou přepravu.
                     </p>
                   </div>
                 </div>
 
+                {/* Benefit 2: Kompletní občanská vybavenost */}
                 <div className="flex items-start">
-                  <div className="text-gray-400 mr-4 mt-1">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M20 4H4V6H20V4Z" fill="currentColor" />
-                      <path d="M4 8H20V20H4V8Z" fill="currentColor" />
-                    </svg>
-                  </div>
+                  <IconShop />
                   <div>
-                    <h3 className="font-bold">
-                      Vše co potřebujete na jednom místě
-                    </h3>
+                    <h3 className="font-bold text-gray-800">Kompletní občanská vybavenost</h3>
                     <p className="text-gray-600 text-sm">
-                      V okolí je spousta obchodů pro uspokojení i těch
-                      nejnáročnějších potřeb
+                      Nasavrky nabízejí širokou škálu obchodů a služeb, které uspokojí i ty nejnáročnější potřeby pro každodenní život.
                     </p>
                   </div>
                 </div>
 
+                {/* Benefit 3: Oáza klidu a přírody */}
                 <div className="flex items-start">
-                  <div className="text-gray-400 mr-4 mt-1">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6.05 8.05C4.95 9.15 4.95 10.95 6.05 12.05L12 18L17.95 12.05C19.05 10.95 19.05 9.15 17.95 8.05C16.85 6.95 15.05 6.95 13.95 8.05L12 10L10.05 8.05C8.95 6.95 7.15 6.95 6.05 8.05Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
+                  <IconNature />
                   <div>
-                    <h3 className="font-bold">
-                      Perfektní na odpočinek od rušného města
-                    </h3>
+                    <h3 className="font-bold text-gray-800">Oáza klidu a přírody</h3>
                     <p className="text-gray-600 text-sm">
-                      V blízkosti Nasavrk je spoustu přírody, které Vám umožní
-                      si vydechnout
+                      V blízkosti Nasavrk se rozkládá nádherná příroda, která je ideální pro relaxaci a aktivní odpočinek daleko od městského shonu.
                     </p>
                   </div>
                 </div>
