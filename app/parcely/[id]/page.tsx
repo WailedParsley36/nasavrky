@@ -10,8 +10,10 @@ import PropertyDetailPage from "../../../components/properties/PropertyDetailPag
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://nasavrky.vercel.app";
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const id = base64url.decode(params.id as string);
-    const currentParcel = getAllParcels().find((x) => x.id == id);
+    const { id } = await params;
+
+    const parcelId = base64url.decode(id as string);
+    const currentParcel = getAllParcels().find((x) => x.id == parcelId);
 
     if (!currentParcel) {
         return {
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             description: isSold ? `Tato parcela v Nasavrkách je již ${currentParcel.prodano ? 'prodána' : 'rezervována'}.` : `Detailní informace o pozemku ${currentParcel.id} na prodej v Nasavrkách.`,
             url: `${BASE_URL}/parcely/${base64url.encode(currentParcel.id)}`,
             siteName: "Stavební parcely Nasavrky",
-            images: currentParcel.obrazky[0].replace("http", "https").replace("localhost:3000", "nasavrky.vercel.app") ? [{ url: currentParcel.obrazky[0].replace("http", "https").replace("localhost:3000", "nasavrky.vercel.app"), width: 800, height: 600, alt: `Obrázek pozemku ${currentParcel.id}` }] : [],
+            images: currentParcel.obrazky[0] ? [{ url: new URL(`${BASE_URL}${currentParcel.obrazky[0]}`), width: 800, height: 600, alt: `Obrázek pozemku ${currentParcel.id}` }] : [],
             locale: "cs_CZ",
             type: "website",
         },
