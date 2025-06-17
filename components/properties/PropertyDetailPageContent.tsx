@@ -85,27 +85,6 @@ export default function PropertyDetailPage({ parcel: currentParcel }: { parcel: 
                                     <FaRuler className="w-5 h-5 mr-2 text-gray-500" />
                                     <span>{currentParcel.plocha} m²</span>
                                 </div>
-                                <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg text-lg font-medium text-gray-700 shadow-sm">
-                                    <svg
-                                        className="w-5 h-5 mr-2 text-gray-500"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                        />
-                                        <path
-                                            d="M12 12H12.01"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                    </svg>
-                                    <span>Orná půda</span> {/* Zde by mohl být dynamický typ pozemku */}
-                                </div>
                             </div>
                         </div>
 

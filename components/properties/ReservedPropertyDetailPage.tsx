@@ -57,27 +57,6 @@ export default function ReservedPropertyPage({ parcel }: { parcel: Parcela }) {
                                 <FaRuler className="mr-2 text-gray-600" />
                                 <span>{parcel.plocha} m²</span>
                             </div>
-                            <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg">
-                                <svg
-                                    className="w-5 h-5 mr-2 text-gray-600"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    />
-                                    <path
-                                        d="M12 12H12.01"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                    />
-                                </svg>
-                                <span>Orná půda</span>
-                            </div>
                         </div>
 
                         <h1 className="text-3xl font-bold mb-2">Pozemek {parcel.id}</h1>

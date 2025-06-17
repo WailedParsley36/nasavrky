@@ -88,7 +88,6 @@ export default function PropertyPageWrapper({ params }: { params: { id: string }
             { "@type": "ProductFeature", "name": "Inženýrské sítě", "value": "Elektřina, Voda, Kanalizace, Optický internet", "propertyID": "Utilities" },
             { "@type": "ProductFeature", "name": "Lokalita", "value": currentParcel.lokalita, "propertyID": "Location" },
             { "@type": "ProductFeature", "name": "Stav", "value": "Připraveno k okamžité stavbě", "propertyID": "Readiness" },
-            { "@type": "ProductFeature", "name": "Typ půdy", "value": "Orná půda", "propertyID": "LandType" }
         ]
     } : null;
 
