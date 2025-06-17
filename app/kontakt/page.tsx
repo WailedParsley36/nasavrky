@@ -304,7 +304,6 @@ Tel: ${telRef.current?.value}`;
               <h2 className="text-xl font-bold mb-7.5">Proč Nasavrky?</h2>
 
               <div className="space-y-6"> {/* Zvětšena mezera mezi položkami */}
-                {/* Benefit 1: Vynikající dopravní dostupnost */}
                 <div className="flex items-start">
                   <IconBus />
                   <div>
@@ -315,7 +314,6 @@ Tel: ${telRef.current?.value}`;
                   </div>
                 </div>
 
-                {/* Benefit 2: Kompletní občanská vybavenost */}
                 <div className="flex items-start">
                   <IconShop />
                   <div>
@@ -326,7 +324,6 @@ Tel: ${telRef.current?.value}`;
                   </div>
                 </div>
 
-                {/* Benefit 3: Oáza klidu a přírody */}
                 <div className="flex items-start">
                   <IconNature />
                   <div>

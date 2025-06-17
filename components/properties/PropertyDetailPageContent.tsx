@@ -28,10 +28,6 @@ import BenefitItem from "./BenefitItem";
 
 const AllParcels = shuffle(getAllParcels());
 
-function getBaseUrl() {
-    return process.env.NEXT_PUBLIC_BASE_URL || "https://nasavrky.vercel.app";
-}
-
 function shuffle(array: any[]) {
     let currentIndex = array.length;
 
