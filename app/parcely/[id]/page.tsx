@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             description: isSold ? `Tato parcela v Nasavrkách je již ${currentParcel.prodano ? 'prodána' : 'rezervována'}.` : `Detailní informace o pozemku ${currentParcel.id} na prodej v Nasavrkách.`,
             url: `${BASE_URL}/parcely/${base64url.encode(currentParcel.id)}`,
             siteName: "Stavební parcely Nasavrky",
-            images: currentParcel.obrazky[0] ? [{ url: currentParcel.obrazky[0].replace("http", "https").replace("localhost:3000", "nasavrky.vercel.app"), width: 800, height: 600, alt: `Obrázek pozemku ${currentParcel.id}` }] : [],
+            images: currentParcel.obrazky[0].replace("http", "https").replace("localhost:3000", "nasavrky.vercel.app") ? [{ url: currentParcel.obrazky[0].replace("http", "https").replace("localhost:3000", "nasavrky.vercel.app"), width: 800, height: 600, alt: `Obrázek pozemku ${currentParcel.id}` }] : [],
             locale: "cs_CZ",
             type: "website",
         },
